@@ -11,3 +11,32 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+@mixin transition-background {
+  transition: background-color 0.2s ease-in;
+}
+
+@mixin text-xs {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@mixin text-sm {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@mixin text-base {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin text-md {
+  font-size: 20px;
+  line-height: 28px;
+}
+
+@mixin text-lg {
+  font-size: 24px;
+  line-height: 32px;
+}

@@ -1,0 +1,24 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-xs;
+  background-color: $color-secondary-100;
+  padding: $space-md;
+  border-radius: $space-xs;
+  box-shadow: #091e4240 0px 1px 0px;
+  width: 240px;
+  @include transition-background;
+}
+
+.card:hover {
+  background-color: $color-secondary-200;
+}
+
+.cardTitle {
+  color: $color-gray-400;
+  @include truncate;
+  @include text-sm;
+}

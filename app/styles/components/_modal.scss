@@ -1,0 +1,70 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.modal {
+  background-color: $color-secondary-100;
+  width: 420px;
+  color: $color-gray-200;
+  padding: $space-md;
+  border-radius: $radius-md;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-20px);
+  transition: transform 0.3s ease;
+
+  .overlay.active & {
+    transform: translateY(0);
+  }
+
+  @include respond(sm) {
+    width: 300px;
+    padding: $space-md;
+  }
+}
+
+.closeIcon {
+  width: 16px;
+  height: 16px;
+  color: $color-gray-200;
+}
+
+.modalHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 1.25rem;
+  margin-bottom: $space-md;
+  color: $color-gray-300;
+}
+
+.modalBody {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: $space-md;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-sm;
+}

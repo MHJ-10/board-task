@@ -2,6 +2,9 @@
 
 body {
   background-color: $color-primary-100;
+  padding: $space-lg;
 }
 
-
+.cursor-pointer {
+  cursor: pointer;
+}

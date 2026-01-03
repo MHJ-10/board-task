@@ -1,7 +1,8 @@
 $color-primary-100: #2d7faf;
 $color-primary-200: #296f9a;
 
-$color-secondary: #ffffff;
+$color-secondary-100: #ffffff;
+$color-secondary-200: #f4f5f7;
 
 $color-gray-100: #e0e1e6;
 $color-gray-200: #6c798e;
@@ -18,5 +19,9 @@ $font-family-base: "Roboto", system-ui, sans-serif;
 $font-size-base: 16px;
 $line-height-base: 1.5;
 
-$radius-sm: 6px;
-$radius-md: 10px;
+$font-bold: 700;
+$font-medium: 500;
+$font-normal: 400;
+
+$radius-sm: 4px;
+$radius-md: 8px;

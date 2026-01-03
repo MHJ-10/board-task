@@ -1,0 +1,16 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.input {
+  @include text-base;
+  color: $color-gray-300;
+  padding: $space-sm;
+  border-radius: $radius-sm;
+  font-weight: $font-bold;
+  border: none;
+}
+
+.input::placeholder {
+  color: $color-gray-200;
+  font-weight: $font-bold;
+}
