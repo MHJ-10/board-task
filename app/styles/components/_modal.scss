@@ -23,7 +23,7 @@
 .modal {
   background-color: $color-secondary-100;
   width: 420px;
-  color: $color-gray-200;
+  color: $color-gray-300;
   padding: $space-md;
   border-radius: $radius-md;
   position: relative;
@@ -44,7 +44,7 @@
 .closeIcon {
   width: 16px;
   height: 16px;
-  color: $color-gray-200;
+  color: $color-gray-300;
 }
 
 .modalHeader {
@@ -54,7 +54,7 @@
   justify-content: space-between;
   font-size: 1.25rem;
   margin-bottom: $space-md;
-  color: $color-gray-300;
+  color: $color-gray-500;
 }
 
 .modalBody {

@@ -12,7 +12,7 @@
   text-overflow: ellipsis;
 }
 
-@mixin transition-background {
+@mixin bg-transition {
   transition: background-color 0.2s ease-in;
 }
 

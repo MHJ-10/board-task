@@ -1,0 +1,22 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.taskCardButton {
+  border: none;
+  padding: $space-xs $space-sm;
+  border-radius: $radius-sm;
+  background-color: $color-gray-100;
+  color: $color-gray-500;
+  @include bg-transition;
+  @include text-xs;
+}
+
+.taskCardButton:hover {
+  background-color: $color-gray-200;
+}
+
+.taskCardBody {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}

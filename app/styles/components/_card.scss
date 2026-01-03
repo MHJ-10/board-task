@@ -10,7 +10,7 @@
   border-radius: $space-xs;
   box-shadow: #091e4240 0px 1px 0px;
   width: 240px;
-  @include transition-background;
+  @include bg-transition;
 }
 
 .card:hover {
