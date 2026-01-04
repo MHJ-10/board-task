@@ -28,6 +28,28 @@
   &__tasks {
     display: flex;
     flex-direction: column;
-    gap: $space-xs;
+    gap: $space-sm;
+  }
+
+  &__add-button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: $color-gray-300;
+    padding: $space-xs $space-sm;
+    @include text-sm;
+    @include bg-transition;
+
+    & svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    &:hover {
+      background-color: $color-gray-200;
+    }
   }
 }

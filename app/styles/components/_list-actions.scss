@@ -6,6 +6,7 @@
   background-color: $color-secondary-100;
   border-radius: $radius-md;
   padding: $space-xs;
+  z-index: 10;
 
   &__header {
     position: relative;

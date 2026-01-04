@@ -8,6 +8,8 @@ import ListActions from "./list-actions";
 import TaskCard from "./task-card";
 import { Option, Task } from "../../types";
 import { useClickOutside } from "../../hooks";
+import { PlusIcon } from "lucide-react";
+import ItemForm from "./item-form";
 
 interface TaskListProps {
   options?: Option[];
@@ -21,6 +23,8 @@ const TaskList = (props: TaskListProps) => {
 
   const [showOptions, setShowOptions] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
+
+  const [showAddForm, setShowAddForm] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -84,6 +88,29 @@ const TaskList = (props: TaskListProps) => {
             />
           ))}
         </div>
+
+        {showAddForm ? (
+          <ItemForm
+            label="Enter a  card title..."
+            buttonText="Create Card"
+            onClose={() => {
+              setShowAddForm(false);
+            }}
+            onSumbit={(val) => {
+              console.log(val);
+            }}
+          />
+        ) : (
+          <button
+            className="task-list__add-button"
+            onClick={() => {
+              setShowAddForm(true);
+            }}
+          >
+            <PlusIcon />
+            <span>Add another card</span>
+          </button>
+        )}
       </List>
 
       {showOptions && (

@@ -6,10 +6,9 @@
   flex-direction: column;
   gap: $space-xs;
   background-color: $color-secondary-100;
-  padding: $space-md;
+  padding: $space-sm;
   border-radius: $space-xs;
-  box-shadow: #091e4240 0px 1px 0px;
-  width: 240px;
+  box-shadow: $color-secondary-200 0px 1px 0px;
   @include bg-transition;
 }
 
