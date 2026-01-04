@@ -8,6 +8,8 @@
     cursor: pointer;
     font-weight: $font-bold;
     @include text-sm;
+    @include truncate;
+    max-width: 80%;
 
     &:hover {
       opacity: 0.9;

@@ -50,7 +50,10 @@ const ListActions = ({ title, options, onClose }: ListActionsProps) => {
 
               <button
                 className="list-actions__action-button"
-                onClick={selectedOption.onClick}
+                onClick={() => {
+                  selectedOption.onClick();
+                  onClose?.();
+                }}
               >
                 {selectedOption.label}
               </button>

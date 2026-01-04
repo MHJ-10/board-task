@@ -17,6 +17,9 @@ const CommentModal = (props: ModalProps) => {
 
   const onClick = () => {
     onAddClick?.(textareaRef.current?.value || "");
+    if (textareaRef.current) {
+      textareaRef.current.value = "";
+    }
   };
 
   return (

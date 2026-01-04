@@ -15,7 +15,9 @@
     color: $color-secondary-100;
     font-weight: $font-bold;
     cursor: pointer;
+    max-width: 250px;
     @include text-lg;
+    @include truncate;
   }
 
   &__lists {

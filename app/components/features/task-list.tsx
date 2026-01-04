@@ -16,14 +16,16 @@ interface TaskListProps {
   title: string;
   tasks?: Task[];
   onEditTitle?: (title: string) => void;
+  onAddTask: (title: string) => void;
+  onSaveComment: (taskId: string, message: string) => void;
 }
 
 const TaskList = (props: TaskListProps) => {
-  const { title, options, tasks, onEditTitle } = props;
+  const { title, options, tasks, onEditTitle, onAddTask, onSaveComment } =
+    props;
 
   const [showOptions, setShowOptions] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
-
   const [showAddForm, setShowAddForm] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -82,6 +84,9 @@ const TaskList = (props: TaskListProps) => {
               key={task.id}
               title={task.title}
               comments={task.comments}
+              onAddComment={(title) => {
+                onSaveComment(task.id, title);
+              }}
             />
           ))}
         </div>
@@ -93,8 +98,9 @@ const TaskList = (props: TaskListProps) => {
             onClose={() => {
               setShowAddForm(false);
             }}
-            onSumbit={(val) => {
-              console.log(val);
+            onSumbit={(title) => {
+              onAddTask(title);
+              setShowAddForm(false);
             }}
           />
         ) : (

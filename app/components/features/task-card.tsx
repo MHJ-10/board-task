@@ -6,10 +6,11 @@ import { Comment } from "../../types";
 interface TaskCardProps {
   title: string;
   comments: Comment[];
+  onAddComment: (message: string) => void;
 }
 
 const TaskCard = (props: TaskCardProps) => {
-  const { title, comments } = props;
+  const { title, comments, onAddComment } = props;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,6 +31,7 @@ const TaskCard = (props: TaskCardProps) => {
       <CommentModal
         title={title}
         comments={comments}
+        onAddClick={onAddComment}
         isOpen={isOpen}
         onClose={() => {
           setIsOpen(false);

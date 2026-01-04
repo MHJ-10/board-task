@@ -129,7 +129,7 @@ export const useBoardStore = create<BoardState>((set) => ({
                     task.id === taskId
                       ? {
                           ...task,
-                          comments: [...task.comments, newComment],
+                          comments: [newComment, ...task.comments],
                         }
                       : task
                   ),
