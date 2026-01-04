@@ -1,9 +1,12 @@
 "use client";
 
-import { TaskList } from "./components/features";
+import { useState } from "react";
+import { ItemForm, TaskList } from "./components/features";
 import { Option, Task } from "./types";
 
 export default function Home() {
+  const [show, setShow] = useState(true);
+
   const options: Option[] = [
     {
       label: "Delete List",
@@ -30,14 +33,18 @@ export default function Home() {
 
   return (
     <div style={{ width: "fit-content" }}>
-      <TaskList
-        title="todo"
-        options={options}
-        tasks={tasks}
-        onEditTitle={(title) => {
-          console.log(title);
-        }}
-      />
+      {show ? (
+        <ItemForm
+          label="Add a card"
+          buttonText="Add Card"
+          onClose={() => {
+            setShow(false);
+          }}
+          onSumbit={(value) => {
+            console.log(value);
+          }}
+        />
+      ) : null}
     </div>
   );
 }
