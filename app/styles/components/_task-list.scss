@@ -1,0 +1,33 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.task-list {
+  position: relative;
+
+  &__title {
+    cursor: pointer;
+    font-weight: $font-bold;
+    @include text-sm;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  &__title-form {
+    width: 100%;
+  }
+
+  &__actions-wrapper {
+    position: absolute;
+    top: 40px;
+    right: -80px;
+    width: 100%;
+  }
+
+  &__tasks {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xs;
+  }
+}

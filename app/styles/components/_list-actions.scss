@@ -1,0 +1,86 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.list-actions {
+  position: relative;
+  background-color: $color-secondary-100;
+  border-radius: $radius-md;
+  padding: $space-xs;
+
+  &__header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $color-gray-100;
+    padding-bottom: $space-xs;
+  }
+
+  &__title {
+    margin-inline: auto;
+    padding-block: $space-xs;
+    color: $color-gray-500;
+    @include text-sm;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+
+    &--close {
+      right: 8px;
+    }
+
+    &--back {
+      left: 8px;
+    }
+  }
+
+  &__content {
+    padding: $space-xs $space-sm;
+  }
+
+  &__options {
+    list-style: none;
+
+    li {
+      cursor: pointer;
+      color: $color-gray-400;
+      font-weight: $font-bold;
+      @include text-sm;
+
+      padding: $space-xs;
+
+      &:hover {
+        background-color: $color-primary-200;
+      }
+    }
+  }
+
+  &__action {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+
+    &-message {
+      @include text-base;
+    }
+
+    &-button {
+      background-color: $color-error-100;
+      color: $color-secondary-100;
+      padding: 8px 12px;
+      border: none;
+      border-radius: $radius-sm;
+      width: fit-content;
+      cursor: pointer;
+      font-weight: $font-bold;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
