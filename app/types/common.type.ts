@@ -7,7 +7,7 @@ export interface Option {
 export interface Comment {
   id: string;
   author: string;
-  timestamp: string;
+  date: string;
   message: string;
 }
 
@@ -15,4 +15,15 @@ export interface Task {
   id: string;
   title: string;
   comments: Comment[];
+}
+
+export interface List {
+  id: string;
+  title: string;
+  tasks: Task[];
+}
+
+export interface Board {
+  title: string;
+  lists: List[];
 }

@@ -35,8 +35,7 @@ const CommentModal = (props: ModalProps) => {
           comments.map((comment) => (
             <div className="comment-modal__comment" key={comment.id}>
               <p className="comment-modal__meta">
-                {comment.author} ·{" "}
-                {new Date(comment.timestamp).toLocaleString()}
+                {comment.author} · {new Date(comment.date).toLocaleString()}
               </p>
               <p className="comment-modal__message">{comment.message}</p>
             </div>
