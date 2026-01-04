@@ -4,7 +4,7 @@ import { PlusIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import { useBoardStore } from "../../store";
 import { Option } from "../../types";
-import { TaskList } from "../features";
+import { ItemForm, TaskList } from "../features";
 import { Input } from "../ui";
 import { useClickOutside } from "../../hooks";
 import { flushSync } from "react-dom";
@@ -16,6 +16,7 @@ const BoardPage = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [isTitleEditable, setIsTitleEditable] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   const listOptions: Option[] = [
     {
@@ -40,7 +41,7 @@ const BoardPage = () => {
   return (
     <div className="board">
       {isTitleEditable ? (
-        <form>
+        <form className="board__title-form">
           <Input
             ref={inputRef}
             defaultValue={board?.title}
@@ -70,10 +71,28 @@ const BoardPage = () => {
             />
           </div>
         ))}
-        <button className="board__add-list">
-          <PlusIcon />
-          Add another list
-        </button>
+        {showForm ? (
+          <ItemForm
+            label="Enter a list title..."
+            buttonText="Add list"
+            onClose={() => {
+              setShowForm(false);
+            }}
+            onSumbit={(val) => {
+              console.log(val);
+            }}
+          />
+        ) : (
+          <button
+            className="board__add-list"
+            onClick={() => {
+              setShowForm(true);
+            }}
+          >
+            <PlusIcon />
+            Add another list
+          </button>
+        )}
       </div>
     </div>
   );

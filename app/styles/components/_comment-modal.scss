@@ -5,7 +5,15 @@
   &__content {
     display: flex;
     flex-direction: column;
+    gap: $space-md;
+  }
+
+  &__comments-wrappper {
+    display: flex;
+    flex-direction: column;
     gap: $space-sm;
+    max-height: 200px;
+    overflow-y: auto;
   }
 
   &__comment {
@@ -26,8 +34,11 @@
   }
 
   &__empty {
-    color: $color-gray-500;
-    @include text-md;
+    background-color: $color-secondary-200;
+    color: $color-gray-400;
+    border-radius: $radius-sm;
+    padding: $space-sm;
+    @include text-sm;
   }
 
   &__textarea {

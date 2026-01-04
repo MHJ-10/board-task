@@ -31,18 +31,22 @@ const CommentModal = (props: ModalProps) => {
       }
     >
       <div className="comment-modal__content">
-        {comments?.length ? (
-          comments.map((comment) => (
-            <div className="comment-modal__comment" key={comment.id}>
-              <p className="comment-modal__meta">
-                {comment.author} · {new Date(comment.date).toLocaleString()}
-              </p>
-              <p className="comment-modal__message">{comment.message}</p>
-            </div>
-          ))
-        ) : (
-          <p className="comment-modal__empty">No comments yet</p>
-        )}
+        <div className="comment-modal__comments-wrappper">
+          {comments?.length ? (
+            comments.map((comment) => (
+              <div className="comment-modal__comment" key={comment.id}>
+                <p className="comment-modal__meta">
+                  {comment.author} · {new Date(comment.date).toLocaleString()}
+                </p>
+                <p className="comment-modal__message">{comment.message}</p>
+              </div>
+            ))
+          ) : (
+            <p className="comment-modal__empty">
+              No comments yet. Be the first to comment!
+            </p>
+          )}
+        </div>
 
         <textarea
           ref={textareaRef}

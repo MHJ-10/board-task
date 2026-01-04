@@ -81,17 +81,14 @@ const TaskList = (props: TaskListProps) => {
             <TaskCard
               key={task.id}
               title={task.title}
-              commentsTotal={task.comments.length}
-              onCommentButtonClick={() => {
-                console.log(task);
-              }}
+              comments={task.comments}
             />
           ))}
         </div>
 
         {showAddForm ? (
           <ItemForm
-            label="Enter a  card title..."
+            label="Enter a card title..."
             buttonText="Create Card"
             onClose={() => {
               setShowAddForm(false);

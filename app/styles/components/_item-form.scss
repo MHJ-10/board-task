@@ -2,6 +2,7 @@
 @use "../abstracts/mixins" as *;
 
 .item-form {
+  height: fit-content;
   padding: $space-sm;
   display: flex;
   flex-direction: column;

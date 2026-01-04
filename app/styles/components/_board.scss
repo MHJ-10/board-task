@@ -5,8 +5,10 @@
   display: flex;
   flex-direction: column;
   gap: $space-sm;
-  height: 100vh;
-  width: 100%;
+
+  &__title-form {
+    height: 48px;
+  }
 
   &__header {
     padding: $space-sm;
@@ -17,13 +19,21 @@
   }
 
   &__lists {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: $space-sm;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: $space-md;
+    padding: $space-sm;
     overflow-x: auto;
+    height: 100%;
+    min-height: 0;
+    & > * {
+      flex: 0 0 260px;
+    }
   }
 
   &__add-list {
+    width: "100%";
     display: flex;
     align-items: center;
     height: 40px;
