@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ItemForm, TaskList } from "./components/features";
-import { Option, Task } from "./types";
+import { CommentModal, ItemForm, TaskList } from "./components/features";
+import { Comment, Option, Task } from "./types";
 
 export default function Home() {
   const [show, setShow] = useState(true);
@@ -31,6 +31,13 @@ export default function Home() {
     comments: [],
   }));
 
+  const comments: Comment[] = Array.from({ length: 2 }).map((_, i) => ({
+    id: i.toString(),
+    message: `comment message ${i + 1}`,
+    timestamp: new Date().toISOString(),
+    author: "User",
+  }));
+
   return (
     <div style={{ width: "fit-content" }}>
       {show ? (
@@ -45,6 +52,16 @@ export default function Home() {
           }}
         />
       ) : null}
+
+      <CommentModal
+        title="Comments for ..."
+        isOpen={!show}
+        onClose={() => setShow(true)}
+        comments={comments}
+        onAddClick={(message) => {
+          console.log(message);
+        }}
+      />
     </div>
   );
 }

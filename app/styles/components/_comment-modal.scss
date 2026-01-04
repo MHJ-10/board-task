@@ -1,0 +1,58 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.comment-modal {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+  }
+
+  &__comment {
+    background-color: $color-secondary-200;
+    border-radius: $radius-sm;
+    padding: $space-xs;
+  }
+
+  &__meta {
+    margin-bottom: $space-sm;
+    color: $color-gray-300;
+    @include text-xs;
+  }
+
+  &__message {
+    color: $color-gray-500;
+    @include text-base;
+  }
+
+  &__empty {
+    color: $color-gray-500;
+    @include text-md;
+  }
+
+  &__textarea {
+    resize: none;
+    padding: $space-sm;
+    border-radius: $radius-sm;
+    border: 1px solid $color-gray-200;
+    background-color: $color-secondary-100;
+
+    @include text-sm;
+  }
+
+  &__submit {
+    padding: $space-sm $space-md;
+    border-radius: $radius-sm;
+    background-color: $color-success-100;
+    color: $color-secondary-100;
+    border: none;
+    cursor: pointer;
+
+    @include bg-transition;
+    @include text-sm;
+
+    &:hover {
+      background-color: darken($color-success-100, 10%);
+    }
+  }
+}
