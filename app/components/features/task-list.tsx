@@ -1,15 +1,13 @@
 "use client";
 
+import { ItemForm, ListActions, TaskCard } from "@/components/features";
+import { Input, List } from "@/components/ui";
+import { useClickOutside } from "@/hooks";
+import { Option, Task } from "@/types";
 import { useDroppable } from "@dnd-kit/core";
 import { PlusIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import { flushSync } from "react-dom";
-import { useClickOutside } from "../../hooks";
-import { Option, Task } from "../../types";
-import { Input, List } from "../ui";
-import ItemForm from "./item-form";
-import ListActions from "./list-actions";
-import TaskCard from "./task-card";
 
 interface TaskListProps {
   options?: Option[];

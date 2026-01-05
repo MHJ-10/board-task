@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { Input } from "../ui";
+import { Input } from "@/components/ui";
+import { useClickOutside } from "@/hooks";
 import { XIcon } from "lucide-react";
-import { useClickOutside } from "../../hooks";
+import React, { useEffect } from "react";
 
 interface ItemFormProps {
   label: string;

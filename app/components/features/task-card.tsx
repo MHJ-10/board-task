@@ -1,7 +1,7 @@
+import CommentModal from "@/components/features/comment-modal";
+import { Card, Draggable } from "@/components/ui";
+import { Task } from "@/types";
 import { useState } from "react";
-import { Card, Draggable } from "../ui";
-import CommentModal from "./comment-modal";
-import { Task } from "../../types";
 
 interface TaskCardProps {
   task?: Task;

@@ -1,12 +1,9 @@
 "use client";
 
-import { PlusIcon } from "lucide-react";
-import { useRef, useState } from "react";
-import { flushSync } from "react-dom";
-import { useClickOutside } from "../../hooks";
-import { useBoardStore } from "../../store";
-import { ItemForm, TaskList } from "../features";
-import { Droppable, Input } from "../ui";
+import { ItemForm, TaskList } from "@/components/features";
+import { Droppable, Input } from "@/components/ui";
+import { useClickOutside } from "@/hooks";
+import { useBoardStore } from "@/store";
 import {
   DndContext,
   DragEndEvent,
@@ -15,6 +12,9 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
+import { PlusIcon } from "lucide-react";
+import { useRef, useState } from "react";
+import { flushSync } from "react-dom";
 
 const BoardPage = () => {
   const board = useBoardStore().board;

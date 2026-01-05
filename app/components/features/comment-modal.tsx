@@ -1,6 +1,6 @@
+import { Modal } from "@/components/ui";
+import { Comment } from "@/types";
 import React from "react";
-import { Modal } from "../ui";
-import { Comment } from "../../types";
 
 interface ModalProps {
   title: string;

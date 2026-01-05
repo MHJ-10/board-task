@@ -1,6 +1,6 @@
+import { Board, Comment, List, Task } from "@/types";
+import { generateUUID } from "@/utils";
 import { create } from "zustand";
-import { Board, Comment, List, Task } from "../types";
-import { generateUUID } from "../utils";
 
 interface BoardState {
   board: Board | null;

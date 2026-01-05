@@ -1,9 +1,9 @@
 "use client";
 
+import { useClickOutside } from "@/hooks";
+import { Option } from "@/types";
 import { ChevronLeft, XIcon } from "lucide-react";
 import { useRef, useState } from "react";
-import { Option } from "../../types";
-import { useClickOutside } from "../../hooks";
 
 interface ListActionsProps {
   title: string;
