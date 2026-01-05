@@ -23,10 +23,10 @@ const TaskCard = ({ id }: { id: string }) => {
         data={{ taskId: task.id, listId: task.listId }}
       >
         <Card title={task.title}>
-          <div className="taskCardBody">
+          <div className="card__body">
             <button
               data-dndkit-draggable-ignore
-              className="taskCardButton cursor-pointer"
+              className="card__button"
               onPointerDown={(e) => {
                 e.stopPropagation();
               }}

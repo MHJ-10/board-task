@@ -31,33 +31,7 @@
     height: 100%;
     min-height: 0;
     & > * {
-      flex: 0 0 260px;
-    }
-  }
-
-  &__add-list {
-    width: "100%";
-    display: flex;
-    align-items: center;
-    height: 40px;
-    padding: $space-sm;
-    color: $color-secondary-100;
-    border-radius: 0.2rem;
-    background-color: $color-primary-200;
-    cursor: pointer;
-    border: none;
-    gap: $space-xs;
-
-    @include bg-transition;
-    @include text-base;
-
-    &:hover {
-      background-color: darken($color-primary-200, 2%);
-    }
-
-    svg {
-      width: 12px;
-      height: 12px;
+      width: 260px;
     }
   }
 }

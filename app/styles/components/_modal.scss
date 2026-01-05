@@ -1,7 +1,7 @@
 @use "@/styles/abstracts/variables" as *;
 @use "@/styles/abstracts/mixins" as *;
 
-.overlay {
+.modal-overlay {
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
@@ -31,7 +31,7 @@
   transform: translateY(-20px);
   transition: transform 0.3s ease;
 
-  .overlay.active & {
+  .modal-overlay.active & {
     transform: translateY(0);
   }
 
@@ -39,32 +39,32 @@
     width: 300px;
     padding: $space-md;
   }
-}
 
-.closeIcon {
-  width: 16px;
-  height: 16px;
-  color: $color-gray-300;
-}
+  &__close {
+    width: 16px;
+    height: 16px;
+    color: $color-gray-300;
+  }
 
-.modalHeader {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 1.25rem;
-  margin-bottom: $space-md;
-  color: $color-gray-500;
-}
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.25rem;
+    margin-bottom: $space-md;
+    color: $color-gray-500;
+  }
 
-.modalBody {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: $space-md;
-}
+  &__body {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: $space-md;
+  }
 
-.modalFooter {
-  display: flex;
-  justify-content: flex-end;
-  gap: $space-sm;
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: $space-sm;
+  }
 }

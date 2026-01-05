@@ -10,14 +10,14 @@
   border-radius: $space-xs;
   box-shadow: $color-secondary-200 0px 1px 0px;
   @include bg-transition;
-}
 
-.card:hover {
-  background-color: $color-secondary-200;
-}
+  &:hover {
+    background-color: $color-secondary-200;
+  }
 
-.cardTitle {
-  color: $color-gray-400;
-  @include truncate;
-  @include text-sm;
+  &__title {
+    color: $color-gray-400;
+    @include truncate;
+    @include text-sm;
+  }
 }

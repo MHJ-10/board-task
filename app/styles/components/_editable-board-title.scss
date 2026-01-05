@@ -1,0 +1,18 @@
+@use "@/styles/abstracts/variables" as *;
+@use "@/styles/abstracts/mixins" as *;
+
+.board__title {
+  cursor: pointer;
+  font-weight: $font-bold;
+  @include text-sm;
+  @include truncate;
+  max-width: 80%;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &__form {
+    width: 100%;
+  }
+}

@@ -4,27 +4,16 @@
 .task-list {
   position: relative;
 
-  &__title {
-    cursor: pointer;
-    font-weight: $font-bold;
-    @include text-sm;
-    @include truncate;
-    max-width: 80%;
-
-    &:hover {
-      opacity: 0.9;
-    }
-  }
-
-  &__title-form {
-    width: 100%;
-  }
-
   &__actions-wrapper {
     position: absolute;
     top: 40px;
     right: -80px;
     width: 100%;
+  }
+
+  &__title {
+    max-width: 80%;
+    @include truncate;
   }
 
   &__tasks {

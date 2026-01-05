@@ -1,22 +1,25 @@
 @use "@/styles/abstracts/variables" as *;
 @use "@/styles/abstracts/mixins" as *;
 
-.taskCardButton {
-  border: none;
-  padding: $space-xs $space-sm;
-  border-radius: $radius-sm;
-  background-color: $color-gray-100;
-  color: $color-gray-500;
-  @include bg-transition;
-  @include text-xs;
-}
+.card {
+  &__body {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
 
-.taskCardButton:hover {
-  background-color: $color-gray-200;
-}
+  &__button {
+    border: none;
+    padding: $space-xs $space-sm;
+    border-radius: $radius-sm;
+    background-color: $color-gray-100;
+    color: $color-gray-500;
+    @include bg-transition;
+    @include text-xs;
+    cursor: pointer;
+  }
 
-.taskCardBody {
-  display: flex;
-  justify-content: end;
-  align-items: center;
+  &__button:hover {
+    background-color: $color-gray-200;
+  }
 }

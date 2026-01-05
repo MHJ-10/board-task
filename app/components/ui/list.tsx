@@ -11,7 +11,7 @@ const List = (props: ListProps) => {
 
   return (
     <div className="list">
-      <div className="listHeader">
+      <div className="list__header">
         {titleNode}
         {onOptionsClick && (
           <EllipsisIcon className="cursor-pointer" onClick={onOptionsClick} />

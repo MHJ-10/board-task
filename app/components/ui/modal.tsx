@@ -16,14 +16,17 @@ const Modal = (props: ModalProps) => {
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
-    <div className={`overlay ${isOpen ? "active" : ""}`} onClick={onClose}>
+    <div
+      className={`modal-overlay ${isOpen ? "active" : ""}`}
+      onClick={onClose}
+    >
       <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <div className="modalHeader">
+        <div className="modal__header">
           {title && <p>{title}</p>}
-          <XIcon className="closeIcon cursor-pointer" onClick={onClose} />
+          <XIcon className="modal__close cursor-pointer" onClick={onClose} />
         </div>
-        <div className="modalBody">{children}</div>
-        {footer && <div className="modalFooter">{footer}</div>}
+        <div className="modal__body">{children}</div>
+        {footer && <div className="modal__footer">{footer}</div>}
       </div>
     </div>,
     document.getElementById("modal-root") ||
