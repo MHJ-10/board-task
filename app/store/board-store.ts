@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Board, Comment, List } from "../types";
+import { Board, Comment, List, Task } from "../types";
 import { generateUUID } from "../utils";
 
 interface BoardState {
@@ -11,6 +11,11 @@ interface BoardState {
   addTask: (listId: string, title: string) => void;
   deleteAllTasks: (listId: string) => void;
   addComment: (listId: string, taskId: string, message: string) => void;
+  moveTask: (
+    taskId: string,
+    sourceListId: string,
+    targetListId: string
+  ) => void;
 }
 
 export const useBoardStore = create<BoardState>((set) => ({
@@ -18,13 +23,19 @@ export const useBoardStore = create<BoardState>((set) => ({
     title: "Demo Board",
     lists: [
       {
-        id: generateUUID(),
+        id: "123",
         title: "Demo List1",
         tasks: [
-          { id: generateUUID(), title: "Demo Task1", comments: [] },
+          {
+            id: generateUUID(),
+            title: "Demo Task1",
+            comments: [],
+            listId: "123",
+          },
           {
             id: generateUUID(),
             title: "Demo Task2",
+            listId: "123",
             comments: [
               {
                 id: generateUUID(),
@@ -42,8 +53,8 @@ export const useBoardStore = create<BoardState>((set) => ({
           },
         ],
       },
-      { id: generateUUID(), title: "Demo List2", tasks: [] },
-      { id: generateUUID(), title: "Demo List3", tasks: [] },
+      { id: "345", title: "Demo List2", tasks: [] },
+      { id: "567", title: "Demo List3", tasks: [] },
     ],
   },
   editBoardTitle: (title) =>
@@ -100,6 +111,7 @@ export const useBoardStore = create<BoardState>((set) => ({
                       id: generateUUID(),
                       title,
                       comments: [],
+                      listId,
                     },
                   ],
                 }
@@ -158,6 +170,50 @@ export const useBoardStore = create<BoardState>((set) => ({
           lists: state.board.lists.map((list) =>
             list.id === listId ? { ...list, tasks: [] } : list
           ),
+        },
+      };
+    }),
+  moveTask: (taskId, sourceListId, targetListId) =>
+    set((state) => {
+      if (!state.board) return state;
+
+      const lists = state.board.lists.map((list) => {
+        if (list.id === sourceListId) {
+          return {
+            ...list,
+            tasks: list.tasks.filter((task) => task.id !== taskId),
+          };
+        }
+        return list;
+      });
+
+      let movedTask: Task | undefined;
+
+      state.board.lists.forEach((list) => {
+        if (list.id === sourceListId) {
+          movedTask = list.tasks.find((t) => t.id === taskId);
+        }
+      });
+
+      if (!movedTask) return state;
+
+      const updatedTask = {
+        ...movedTask,
+        listId: targetListId,
+      };
+
+      const updatedLists = lists.map((list) => {
+        if (list.id === targetListId) {
+          const newTasks = [...list.tasks];
+          return { ...list, tasks: [...newTasks, updatedTask] };
+        }
+        return list;
+      });
+
+      return {
+        board: {
+          ...state.board,
+          lists: updatedLists,
         },
       };
     }),

@@ -13,6 +13,7 @@ export interface Comment {
 
 export interface Task {
   id: string;
+  listId: string;
   title: string;
   comments: Comment[];
 }

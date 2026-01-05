@@ -1,36 +1,49 @@
 import { useState } from "react";
-import { Card } from "../ui";
+import { Card, Draggable } from "../ui";
 import CommentModal from "./comment-modal";
-import { Comment } from "../../types";
+import { Task } from "../../types";
 
 interface TaskCardProps {
-  title: string;
-  comments: Comment[];
-  onAddComment: (message: string) => void;
+  task?: Task;
+  onAddComment?: (message: string) => void;
 }
 
 const TaskCard = (props: TaskCardProps) => {
-  const { title, comments, onAddComment } = props;
+  const { task, onAddComment } = props;
 
   const [isOpen, setIsOpen] = useState(false);
 
+  if (!task) return;
+
   return (
     <>
-      <Card title={title}>
-        <div className="taskCardBody">
-          <button
-            className="taskCardButton cursor-pointer"
-            onClick={() => {
-              setIsOpen(true);
-            }}
-          >
-            Comments ({comments.length || 0})
-          </button>
-        </div>
-      </Card>
+      <Draggable
+        key={task.id}
+        id={task.id}
+        data={{ taskId: task.id, listId: task.listId }}
+      >
+        <Card title={task.title}>
+          <div className="taskCardBody">
+            <button
+              data-dndkit-draggable-ignore
+              className="taskCardButton cursor-pointer"
+              onPointerDown={(e) => {
+                // insure the drag event is not triggered when clicking the button
+                e.stopPropagation();
+              }}
+              onClick={() => {
+                setIsOpen(true);
+              }}
+            >
+              Comments ({task.comments.length || 0})
+            </button>
+          </div>
+        </Card>
+      </Draggable>
+
       <CommentModal
-        title={title}
-        comments={comments}
+        title={task.title}
+        comments={task.comments}
         onAddClick={onAddComment}
         isOpen={isOpen}
         onClose={() => {
