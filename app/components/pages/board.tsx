@@ -51,8 +51,8 @@ const BoardPage = () => {
             </Droppable>
           ))}
           <AddListToggle
-            triggerText="Add anothet list..."
-            label="Enter a list title"
+            triggerText="Add anothet list"
+            label="Enter a list title..."
             confirmLabel="Add list"
             showForm={showForm}
             setShowForm={setShowForm}

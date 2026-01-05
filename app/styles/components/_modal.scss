@@ -46,6 +46,13 @@
     color: $color-gray-300;
   }
 
+  &__title {
+    max-width: 90%;
+    color: $color-gray-400;
+    @include truncate;
+    @include text-base;
+  }
+
   &__header {
     display: flex;
     flex-direction: row;

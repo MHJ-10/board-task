@@ -22,7 +22,7 @@ const Modal = (props: ModalProps) => {
     >
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal__header">
-          {title && <p>{title}</p>}
+          {title && <p className="modal__title">{title}</p>}
           <XIcon className="modal__close cursor-pointer" onClick={onClose} />
         </div>
         <div className="modal__body">{children}</div>

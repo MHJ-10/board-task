@@ -24,7 +24,7 @@ const CommentModal = (props: ModalProps) => {
 
   return (
     <Modal
-      title={title}
+      title={`Comments for "${title}"`}
       isOpen={isOpen}
       onClose={onClose}
       footer={
