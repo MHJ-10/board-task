@@ -1,20 +1,42 @@
 "use client";
 
 import { useClickOutside } from "@/hooks";
+import { useBoardStore } from "@/store";
 import { Option } from "@/types";
 import { ChevronLeft, XIcon } from "lucide-react";
 import { useRef, useState } from "react";
 
 interface ListActionsProps {
   title: string;
-  options?: Option[];
+  listId: string;
   onClose?: () => void;
 }
 
-const ListActions = ({ title, options, onClose }: ListActionsProps) => {
+const ListActions = ({ title, listId, onClose }: ListActionsProps) => {
+  const deleteList = useBoardStore((s) => s.deleteList);
+  const deleteAllTasks = useBoardStore((s) => s.deleteAllTasks);
+
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const options = [
+    {
+      label: "Delele List",
+      message:
+        "All actions will be removed from the activity feed and you won’t be able to re-open the list. There is no undo.",
+      onClick: () => {
+        deleteList(listId);
+      },
+    },
+    {
+      label: "Delele All Cards",
+      message: "This will remove all the cards in this list from the board.",
+      onClick: () => {
+        deleteAllTasks(listId);
+      },
+    },
+  ];
 
   useClickOutside<HTMLDivElement>(containerRef, () => {
     onClose?.();
