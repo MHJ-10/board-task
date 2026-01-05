@@ -1,7 +1,8 @@
+import { boardMockData } from "@/constants";
 import { Board, Comment, List, Task } from "@/types";
 import { generateUUID } from "@/utils";
 import { create } from "zustand";
-
+import { persist } from "zustand/middleware";
 interface BoardState {
   board: Board | null;
   editBoardTitle: (title: string) => void;
@@ -18,203 +19,175 @@ interface BoardState {
   ) => void;
 }
 
-export const useBoardStore = create<BoardState>((set) => ({
-  board: {
-    title: "Demo Board",
-    lists: [
-      {
-        id: "123",
-        title: "Demo List1",
-        tasks: [
-          {
-            id: generateUUID(),
-            title: "Demo Task1",
-            comments: [],
-            listId: "123",
-          },
-          {
-            id: generateUUID(),
-            title: "Demo Task2",
-            listId: "123",
-            comments: [
-              {
-                id: generateUUID(),
-                author: "You",
-                date: new Date().toISOString(),
-                message: "Demo comment",
-              },
-              {
-                id: generateUUID(),
-                author: "You",
-                date: new Date().toISOString(),
-                message: "Demo comment2",
-              },
-            ],
-          },
-        ],
-      },
-      { id: "345", title: "Demo List2", tasks: [] },
-      { id: "567", title: "Demo List3", tasks: [] },
-    ],
-  },
-  editBoardTitle: (title) =>
-    set((state) => {
-      if (!state.board) return state;
-      return {
-        board: { ...state.board, title },
-      };
-    }),
-  addList: (title) =>
-    set((state) => {
-      if (!state.board) return state;
-
-      const newList: List = {
-        id: generateUUID(),
-        title,
-        tasks: [],
-      };
-
-      return {
-        board: {
-          ...state.board,
-          lists: [...state.board.lists, newList],
-        },
-      };
-    }),
-  editListTitle: (listId, title) =>
-    set((state) => {
-      if (!state.board) return state;
-
-      return {
-        board: {
-          ...state.board,
-          lists: state.board.lists.map((list) =>
-            list.id === listId ? { ...list, title } : list
-          ),
-        },
-      };
-    }),
-  addTask: (listId, title) =>
-    set((state) => {
-      if (!state.board) return state;
-
-      return {
-        board: {
-          ...state.board,
-          lists: state.board.lists.map((list) =>
-            list.id === listId
-              ? {
-                  ...list,
-                  tasks: [
-                    ...list.tasks,
-                    {
-                      id: generateUUID(),
-                      title,
-                      comments: [],
-                      listId,
-                    },
-                  ],
-                }
-              : list
-          ),
-        },
-      };
-    }),
-  addComment: (listId, taskId, message) =>
-    set((state) => {
-      if (!state.board) return state;
-
-      const newComment: Comment = {
-        id: generateUUID(),
-        author: "You",
-        message,
-        date: new Date().toISOString(),
-      };
-      return {
-        board: {
-          ...state.board,
-          lists: state.board.lists.map((list) =>
-            list.id === listId
-              ? {
-                  ...list,
-                  tasks: list.tasks.map((task) =>
-                    task.id === taskId
-                      ? {
-                          ...task,
-                          comments: [newComment, ...task.comments],
-                        }
-                      : task
-                  ),
-                }
-              : list
-          ),
-        },
-      };
-    }),
-  deleteList: (listId) =>
-    set((state) => {
-      if (!state.board) return state;
-      return {
-        board: {
-          ...state.board,
-          lists: state.board.lists.filter((list) => list.id !== listId),
-        },
-      };
-    }),
-  deleteAllTasks: (listId) =>
-    set((state) => {
-      if (!state.board) return state;
-      return {
-        board: {
-          ...state.board,
-          lists: state.board.lists.map((list) =>
-            list.id === listId ? { ...list, tasks: [] } : list
-          ),
-        },
-      };
-    }),
-  moveTask: (taskId, sourceListId, targetListId) =>
-    set((state) => {
-      if (!state.board) return state;
-
-      const lists = state.board.lists.map((list) => {
-        if (list.id === sourceListId) {
+export const useBoardStore = create<BoardState>()(
+  persist(
+    (set) => ({
+      board: boardMockData,
+      editBoardTitle: (title) =>
+        set((state) => {
+          if (!state.board) return state;
           return {
-            ...list,
-            tasks: list.tasks.filter((task) => task.id !== taskId),
+            board: { ...state.board, title },
           };
-        }
-        return list;
-      });
+        }),
+      addList: (title) =>
+        set((state) => {
+          if (!state.board) return state;
 
-      let movedTask: Task | undefined;
+          const newList: List = {
+            id: generateUUID(),
+            title,
+            tasks: [],
+          };
 
-      state.board.lists.forEach((list) => {
-        if (list.id === sourceListId) {
-          movedTask = list.tasks.find((t) => t.id === taskId);
-        }
-      });
+          return {
+            board: {
+              ...state.board,
+              lists: [...state.board.lists, newList],
+            },
+          };
+        }),
+      editListTitle: (listId, title) =>
+        set((state) => {
+          if (!state.board) return state;
 
-      if (!movedTask) return state;
+          return {
+            board: {
+              ...state.board,
+              lists: state.board.lists.map((list) =>
+                list.id === listId ? { ...list, title } : list
+              ),
+            },
+          };
+        }),
+      addTask: (listId, title) =>
+        set((state) => {
+          if (!state.board) return state;
 
-      const updatedTask = {
-        ...movedTask,
-        listId: targetListId,
-      };
+          return {
+            board: {
+              ...state.board,
+              lists: state.board.lists.map((list) =>
+                list.id === listId
+                  ? {
+                      ...list,
+                      tasks: [
+                        ...list.tasks,
+                        {
+                          id: generateUUID(),
+                          board: boardMockData,
+                          title,
+                          comments: [],
+                          listId,
+                        },
+                      ],
+                    }
+                  : list
+              ),
+            },
+          };
+        }),
+      addComment: (listId, taskId, message) =>
+        set((state) => {
+          if (!state.board) return state;
 
-      const updatedLists = lists.map((list) => {
-        if (list.id === targetListId) {
-          const newTasks = [...list.tasks];
-          return { ...list, tasks: [...newTasks, updatedTask] };
-        }
-        return list;
-      });
+          const newComment: Comment = {
+            id: generateUUID(),
+            author: "You",
+            message,
+            date: new Date().toISOString(),
+          };
+          return {
+            board: {
+              ...state.board,
+              lists: state.board.lists.map((list) =>
+                list.id === listId
+                  ? {
+                      ...list,
+                      tasks: list.tasks.map((task) =>
+                        task.id === taskId
+                          ? {
+                              ...task,
+                              comments: [newComment, ...task.comments],
+                            }
+                          : task
+                      ),
+                    }
+                  : list
+              ),
+            },
+          };
+        }),
+      deleteList: (listId) =>
+        set((state) => {
+          if (!state.board) return state;
+          return {
+            board: {
+              ...state.board,
+              lists: state.board.lists.filter((list) => list.id !== listId),
+            },
+          };
+        }),
+      deleteAllTasks: (listId) =>
+        set((state) => {
+          if (!state.board) return state;
+          return {
+            board: {
+              ...state.board,
+              lists: state.board.lists.map((list) =>
+                list.id === listId ? { ...list, tasks: [] } : list
+              ),
+            },
+          };
+        }),
+      moveTask: (taskId, sourceListId, targetListId) =>
+        set((state) => {
+          if (!state.board) return state;
 
-      return {
-        board: {
-          ...state.board,
-          lists: updatedLists,
-        },
-      };
+          const lists = state.board.lists.map((list) => {
+            if (list.id === sourceListId) {
+              return {
+                ...list,
+                tasks: list.tasks.filter((task) => task.id !== taskId),
+              };
+            }
+            return list;
+          });
+
+          let movedTask: Task | undefined;
+
+          state.board.lists.forEach((list) => {
+            if (list.id === sourceListId) {
+              movedTask = list.tasks.find((t) => t.id === taskId);
+            }
+          });
+
+          if (!movedTask) return state;
+
+          const updatedTask = {
+            ...movedTask,
+            listId: targetListId,
+          };
+
+          const updatedLists = lists.map((list) => {
+            if (list.id === targetListId) {
+              const newTasks = [...list.tasks];
+              return { ...list, tasks: [...newTasks, updatedTask] };
+            }
+            return list;
+          });
+
+          return {
+            board: {
+              ...state.board,
+              lists: updatedLists,
+            },
+          };
+        }),
     }),
-}));
+    {
+      name: "board-storage",
+      partialize: (state) => ({ board: state.board }),
+    }
+  )
+);

@@ -11,12 +11,15 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { useState } from "react";
+import { useId, useState } from "react";
 
 const BoardPage = () => {
   const board = useBoardStore((s) => s.board);
   const moveTask = useBoardStore((s) => s.moveTask);
   const addList = useBoardStore((s) => s.addList);
+
+  // dnd-kit unique id for hydration error avoidance
+  const id = useId();
 
   const [showForm, setShowForm] = useState(false);
 
@@ -41,7 +44,7 @@ const BoardPage = () => {
   return (
     <div className="board">
       <BoardTitle />
-      <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
+      <DndContext id={id} sensors={sensors} onDragEnd={handleDragEnd}>
         <div className="board__lists">
           {board?.lists.map((list) => (
             <Droppable key={list.id} id={list.id}>
